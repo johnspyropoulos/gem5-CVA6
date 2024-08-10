@@ -37,6 +37,7 @@ class CPUTypes(Enum):
     O3 = "o3"
     TIMING = "timing"
     MINOR = "minor"
+    CVA6 = "cva6"
 
 
 def get_cpu_types_str_set() -> Set[str]:
@@ -83,6 +84,7 @@ def get_mem_mode(input: CPUTypes) -> MemMode:
         CPUTypes.TIMING: MemMode.TIMING,
         CPUTypes.O3: MemMode.TIMING,
         CPUTypes.MINOR: MemMode.TIMING,
+        CPUTypes.CVA6: MemMode.TIMING,
         CPUTypes.KVM: MemMode.ATOMIC_NONCACHING,
         CPUTypes.ATOMIC: MemMode.ATOMIC,
     }

@@ -29,6 +29,7 @@ from typing import List
 
 from m5.objects import (
     BaseAtomicSimpleCPU,
+    BaseCVA6CPU,
     BaseMinorCPU,
     BaseNonCachingSimpleCPU,
     BaseO3CPU,
@@ -80,7 +81,7 @@ class BaseCPUProcessor(AbstractProcessor):
             board.set_mem_mode(MemMode.ATOMIC_NONCACHING)
         elif isinstance(
             self.cores[0].get_simobject(),
-            (BaseTimingSimpleCPU, BaseO3CPU, BaseMinorCPU),
+            (BaseTimingSimpleCPU, BaseO3CPU, BaseMinorCPU, BaseCVA6CPU),
         ):
             board.set_mem_mode(MemMode.TIMING)
         elif isinstance(

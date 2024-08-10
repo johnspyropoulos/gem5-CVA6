@@ -1,0 +1,36 @@
+Import('*')
+
+if env['CONF']['BUILD_ISA']:
+    SimObject('BaseCVA6CPU.py', sim_objects=[
+        'CVA6OpClass', 'CVA6OpClassSet', 'CVA6FUTiming', 'CVA6FU',
+        'CVA6FUPool', 'BaseCVA6CPU'],
+        enums=['ThreadPolicyCVA6'])
+
+    Source('activity.cc')
+    Source('cpu.cc')
+    Source('decode.cc')
+    Source('dyn_inst.cc')
+    Source('execute.cc')
+    Source('fetch1.cc')
+    Source('fetch2.cc')
+    Source('func_unit.cc')
+    Source('lsq.cc')
+    Source('pipe_data.cc')
+    Source('pipeline.cc')
+    Source('scoreboard.cc')
+    Source('stats.cc')
+
+    DebugFlag('CVA6CPU', 'CVA6 CPU-level events')
+    DebugFlag('CVA6Execute', 'CVA6 Execute stage')
+    DebugFlag('CVA6Interrupt', 'CVA6 interrupt handling')
+    DebugFlag('CVA6Mem', 'CVA6 memory accesses')
+    DebugFlag('CVA6Scoreboard', 'CVA6 Execute register scoreboard')
+    DebugFlag('CVA6Trace', 'CVA6Trace cycle-by-cycle state trace')
+    DebugFlag('CVA6Timing', 'Extra timing for instructions')
+
+    CompoundFlag('CVA6', [
+        'CVA6CPU', 'CVA6Execute', 'CVA6Interrupt', 'CVA6Mem',
+        'CVA6Scoreboard'])
+
+    # For backwards compatibility
+    SimObject('CVA6CPU.py', sim_objects=[])

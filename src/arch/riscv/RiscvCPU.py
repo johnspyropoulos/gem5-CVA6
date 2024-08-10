@@ -24,6 +24,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from m5.objects.BaseAtomicSimpleCPU import BaseAtomicSimpleCPU
+from m5.objects.BaseCVA6CPU import BaseCVA6CPU
 from m5.objects.BaseMinorCPU import BaseMinorCPU
 from m5.objects.BaseNonCachingSimpleCPU import BaseNonCachingSimpleCPU
 from m5.objects.BaseO3CPU import BaseO3CPU
@@ -58,4 +59,8 @@ class RiscvO3CPU(BaseO3CPU, RiscvCPU):
 
 
 class RiscvMinorCPU(BaseMinorCPU, RiscvCPU):
+    mmu = RiscvMMU()
+
+
+class RiscvCVA6CPU(BaseCVA6CPU, RiscvCPU):
     mmu = RiscvMMU()

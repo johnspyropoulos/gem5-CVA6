@@ -27,12 +27,24 @@
 
 from typing import Optional
 
+from m5.objects import RiscvCVA6CPU
 from m5.util import warn
 
 from ...isas import ISA
+from ..processors.base_cpu_core import BaseCPUCore
 from ..processors.simple_core import SimpleCore
 from .base_cpu_processor import BaseCPUProcessor
 from .cpu_types import CPUTypes
+
+
+class CVA6Core(BaseCPUCore):
+    def __init__(self):
+        super().__init__(RiscvCVA6CPU(), ISA.RISCV)
+
+
+class CVA6Processor(BaseCPUProcessor):
+    def __init__(self, num_cores: int) -> None:
+        super().__init__(cores=[CVA6Core() for i in range(num_cores)])
 
 
 class SimpleProcessor(BaseCPUProcessor):
